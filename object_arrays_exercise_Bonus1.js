@@ -6,15 +6,19 @@ const six = ["six", "Grand Central", "33rd", "28th", "23rd", "Union Square", "As
 function metro (line1, firstStop, line2, finalStop){
     const stopsLine2 = [];
     const stopsLine1 = [];
+    
     if (line1.includes(firstStop) && line2.includes(finalStop)){
-
-    if (line1.indexOf("Union Square")>line1.indexOf(finalStop)){
+    //union square is after first stop
+    if (line1.indexOf("Union Square")>line1.indexOf(firstStop)){
         stopsLine1.push(line1.slice(line1.indexOf(firstStop)+1,line1.indexOf("Union Square")+1))}
-        else if (line1.indexOf("Union Square")<line1.indexOf(finalStop)){
+    //union square is before first stop    
+        else if (line1.indexOf("Union Square")<line1.indexOf(firstStop)){
             stopsLine1.push(line1.slice(line1.indexOf("Union Square"),line1.indexOf(firstStop)))
-        };
+        stopsLine1[0].reverse()};
+    //union square is before final stop
     if (line2.indexOf("Union Square")<line2.indexOf(finalStop)){
         stopsLine2.push(line2.slice(line2.indexOf("Union Square")+1,line2.indexOf(finalStop)+1))}
+    //union square is after final stop    
         else if (line2.indexOf("Union Square")>line2.indexOf(finalStop))
         {stopsLine2.push(line2.slice(line2.indexOf(finalStop),line2.indexOf("Union Square")));
         stopsLine2[0].reverse()};
@@ -31,4 +35,4 @@ function metro (line1, firstStop, line2, finalStop){
     else return "One or both lines do not have the stops you're looking for"
 }
 
-console.log(metro(L, "8th", six, "Grand Central"))
+console.log(metro(L, "1st", six, "Grand Central"))
